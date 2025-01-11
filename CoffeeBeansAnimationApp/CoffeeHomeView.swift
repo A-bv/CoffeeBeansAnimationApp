@@ -26,7 +26,7 @@ struct CoffeeHomeView: View {
             }
 
             if showCoffee {
-                Image(systemName: "cup.and.saucer.fill") // System icon for coffee
+                Image(systemName: "cup.and.saucer.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)
