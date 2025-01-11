@@ -11,7 +11,7 @@ import SwiftUI
 struct CoffeeBeansAnimationAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CoffeeHomeView()
         }
     }
 }
