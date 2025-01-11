@@ -9,12 +9,19 @@ import SwiftUI
 
 @main
 struct CoffeeApp: App {
+    @State private var overlayVisible = true  // Control overlay visibility
+
     var body: some Scene {
         WindowGroup {
             ZStack {
                 CoffeeHomeView()
-                CoffeeBeansOverlayView()
+                    .disabled(overlayVisible) // Disable CoffeeHomeView interaction while overlay is visible
+
+                if overlayVisible {
+                    CoffeeBeansOverlayView(isVisible: $overlayVisible)
+                }
             }
         }
     }
 }
+
