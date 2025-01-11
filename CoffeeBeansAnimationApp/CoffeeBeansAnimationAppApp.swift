@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct CoffeeBeansAnimationAppApp: App {
+struct CoffeeApp: App {
     var body: some Scene {
         WindowGroup {
-            CoffeeHomeView()
+            ZStack {
+                CoffeeHomeView()
+                CoffeeBeansOverlayView()
+            }
         }
     }
 }
