@@ -15,10 +15,12 @@ struct CoffeeArtBackgroundView: View {
     @State private var gradientStartPoint = UnitPoint.topLeading
     @State private var gradientEndPoint = UnitPoint.bottomTrailing
     
+    // Darker and richer coffee tones
     let colors: [Color] = [
-        Color(.sRGB, red: 0.1, green: 0.05, blue: 0.02, opacity: 1.0),
-        Color(.sRGB, red: 0.25, green: 0.15, blue: 0.1, opacity: 1.0),
-        Color(.sRGB, red: 0.2, green: 0.1, blue: 0.05, opacity: 1.0)
+        Color(.sRGB, red: 0.08, green: 0.04, blue: 0.02, opacity: 1.0), // Dark espresso brown
+        Color(.sRGB, red: 0.18, green: 0.1, blue: 0.05, opacity: 1.0),  // Rich coffee brown
+        Color(.sRGB, red: 0.3, green: 0.18, blue: 0.1, opacity: 1.0),   // Warm coffee brown
+        Color(.sRGB, red: 0.5, green: 0.3, blue: 0.2, opacity: 1.0)     // Deep, warm brown
     ]
     
     var body: some View {
@@ -35,18 +37,48 @@ struct CoffeeArtBackgroundView: View {
                 value: gradientStartPoint
             )
             
-            ForEach(0..<20) { _ in
+            ForEach(0..<80) { _ in
                 Circle()
                     .fill(self.colors.randomElement()!)
-                    .frame(width: CGFloat.random(in: 50...150), height: CGFloat.random(in: 50...150))
+                    .frame(width: CGFloat.random(in: 40...150), height: CGFloat.random(in: 40...150))
                     .position(
                         x: CGFloat.random(in: 0...UIScreen.main.bounds.width),
                         y: CGFloat.random(in: 0...UIScreen.main.bounds.height)
                     )
-                    .opacity(0.2)
-                    .scaleEffect(scale)
-                    .offset(x: offsetX, y: offsetY)
-                    .blur(radius: CGFloat.random(in: 10...40))
+                    .opacity(Double.random(in: 0.05...0.25))
+                    .scaleEffect(CGFloat.random(in: 0.5...2.0), anchor: .center)
+                    .blur(radius: CGFloat.random(in: 20...60))
+                    .rotationEffect(.degrees(Double.random(in: 0...360)))
+                    .rotation3DEffect(
+                        .degrees(Double.random(in: -30...30)),
+                        axis: (x: 1, y: 1, z: 0)
+                    )
+                    .scaleEffect(CGFloat.random(in: 0.8...2.0), anchor: .center)
+                    .opacity(Double.random(in: 0.05...0.4))
+                    .animation(
+                        Animation.easeInOut(duration: Double.random(in: 4.0...8.0))
+                            .repeatForever(autoreverses: true)
+                            .delay(Double.random(in: 0...3.0)),
+                        value: offsetX
+                    )
+            }
+            
+            ForEach(0..<30) { _ in
+                Circle()
+                    .fill(self.colors.randomElement()!)
+                    .frame(width: CGFloat.random(in: 20...50), height: CGFloat.random(in: 20...50))
+                    .position(
+                        x: CGFloat.random(in: 0...UIScreen.main.bounds.width),
+                        y: CGFloat.random(in: 0...UIScreen.main.bounds.height)
+                    )
+                    .opacity(Double.random(in: 0.15...0.4))
+                    .scaleEffect(CGFloat.random(in: 0.5...1.5), anchor: .center)
+                    .blur(radius: CGFloat.random(in: 5...20))
+                    .rotationEffect(.degrees(Double.random(in: 0...360)))
+                    .rotation3DEffect(
+                        .degrees(Double.random(in: -20...20)),
+                        axis: (x: 0, y: 1, z: 0)
+                    )
                     .animation(
                         Animation.easeInOut(duration: Double.random(in: 6.0...12.0))
                             .repeatForever(autoreverses: true)
