@@ -13,14 +13,16 @@ struct CoffeeApp: App {
 
     var body: some Scene {
         WindowGroup {
+            MainView()
+            /*
             ZStack {
-                CoffeeHomeView()
+                MainView()
                     .disabled(overlayVisible)
 
                 if overlayVisible {
                     CoffeeBeansOverlayView(isVisible: $overlayVisible)
                 }
-            }
+            }*/
         }
     }
 }

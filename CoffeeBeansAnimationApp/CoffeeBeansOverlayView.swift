@@ -30,7 +30,7 @@ struct CoffeeBeansOverlayView: View {
                 Image("clearBean")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 100, height: 100)
                     .position(coffeeBeans[index].position)
                     .opacity(coffeeBeans[index].opacity)
                     .rotationEffect(coffeeBeans[index].rotation)

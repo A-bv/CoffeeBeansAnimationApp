@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CoffeeHomeView: View {
+    @Binding var isVisible: Bool
     @State private var showCoffee = false
 
     var body: some View {
@@ -15,6 +16,9 @@ struct CoffeeHomeView: View {
             Button(action: {
                 withAnimation {
                     showCoffee.toggle()
+                }
+                if showCoffee {
+                    showBeans()
                 }
             }) {
                 Text("Show Coffee")
@@ -37,8 +41,15 @@ struct CoffeeHomeView: View {
         }
         .padding()
     }
+    
+    private func showBeans() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            isVisible = true
+            showCoffee = false
+        }
+    }
 }
 
 #Preview {
-    CoffeeHomeView()
+    CoffeeHomeView(isVisible: .constant(false))
 }
