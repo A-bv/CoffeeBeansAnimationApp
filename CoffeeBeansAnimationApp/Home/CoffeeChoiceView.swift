@@ -27,7 +27,7 @@ struct CoffeeChoiceView: View {
 struct CoffeeChoiceView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            AbstractBackgroundView()
+            CoffeeArtBackgroundView()
             CoffeeChoiceView()
         }
     }

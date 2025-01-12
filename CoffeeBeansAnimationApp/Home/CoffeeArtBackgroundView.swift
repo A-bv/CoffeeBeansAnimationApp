@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct AbstractBackgroundView: View {
+struct CoffeeArtBackgroundView: View {
+    @State private var offset: CGFloat = 0.0
+    
     var body: some View {
         ZStack {
             LinearGradient(
@@ -19,24 +21,34 @@ struct AbstractBackgroundView: View {
                 endPoint: .bottomTrailing
             )
             .edgesIgnoringSafeArea(.all)
-
-            ForEach(0..<8) { _ in
+            
+            ForEach(0..<4) { _ in
                 Circle()
                     .fill(Color(.sRGB, red: 0.45, green: 0.35, blue: 0.25, opacity: 1.0))
-                    .frame(width: CGFloat.random(in: 50...150), height: CGFloat.random(in: 50...150))
+                    .frame(width: CGFloat.random(in: 20...80), height: CGFloat.random(in: 20...100))
                     .position(
                         x: CGFloat.random(in: 0...UIScreen.main.bounds.width),
                         y: CGFloat.random(in: 0...UIScreen.main.bounds.height)
                     )
-                    .opacity(0.3)
-                    .blur(radius: 30)
+                    .blur(radius: 40)
+                    .opacity(0.5)
+                    .offset(x: offset, y: offset)
+                    .animation(
+                        Animation.linear(duration: 20.0)
+                            .repeatForever(autoreverses: true),
+                        value: offset
+                    )
             }
+        }
+        .onAppear {
+            offset = CGFloat.random(in: -50...50) // This randomizes the initial movement
         }
     }
 }
 
 struct AbstractBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        AbstractBackgroundView()
+        CoffeeArtBackgroundView()
     }
 }
+
