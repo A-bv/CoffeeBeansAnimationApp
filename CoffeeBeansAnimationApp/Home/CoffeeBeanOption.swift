@@ -33,7 +33,7 @@ struct CoffeeBeanOption: View {
                         .padding(.top, 40)
                 }
                 .padding()
-                .frame(maxWidth: .infinity)
+                .frame(width: 170) // Set a fixed width
                 .background(
                     ZStack {
                         LShape(cornerRadius: 20)
@@ -62,7 +62,7 @@ struct CoffeeBeanOption_Previews: PreviewProvider {
         ZStack {
             CoffeeArtBackgroundView()
             HStack(spacing: 0) {
-                CoffeeBeanOption(name: "Robusta beans", description: "A strong, bold flavor and high caffeine content.", price: 15, imageName: "beansGlassNoB")
+                CoffeeBeanOption(name: "Robusta beans", description: "A strong, bold flavor and high caffeine content.\n", price: 15, imageName: "beansGlassNoB")
                 CoffeeBeanOption(name: "Arabica beans", description: "Experience a smooth, low acidity flavor in your coffee.", price: 12, imageName: "beansGlassNoB")
             }
         }

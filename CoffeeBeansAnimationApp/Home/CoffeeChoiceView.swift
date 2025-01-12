@@ -16,7 +16,7 @@ struct CoffeeChoiceView: View {
                 .padding()
             
             HStack(spacing: 0) {
-                CoffeeBeanOption(name: "Robusta beans", description: "A strong, bold flavor and high caffeine content.", price: 15, imageName: "beansGlassNoB")
+                CoffeeBeanOption(name: "Robusta beans", description: "A strong, bold flavor and high caffeine content.\n", price: 15, imageName: "beansGlassNoB")
                 CoffeeBeanOption(name: "Arabica beans", description: "Experience a smooth, low acidity flavor in your coffee.", price: 12, imageName: "beansGlassNoB")
             }
         }
