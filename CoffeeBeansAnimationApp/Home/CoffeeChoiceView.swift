@@ -13,15 +13,14 @@ struct CoffeeChoiceView: View {
             Text("Best choice")
                 .foregroundColor(Color.white)
                 .font(.system(size: 20, weight: .semibold, design: .rounded))
-                .padding(.top, 20)
+                .padding()
             
-            HStack {
+            HStack(spacing: 0) {
                 CoffeeBeanOption(name: "Robusta beans", description: "A strong, bold flavor and high caffeine content.", price: 15, imageName: "beansGlassNoB")
                 CoffeeBeanOption(name: "Arabica beans", description: "Experience a smooth, low acidity flavor in your coffee.", price: 12, imageName: "beansGlassNoB")
             }
-            .padding(.top, 10)
         }
-        .padding()
+        .padding(5)
     }
 }
 

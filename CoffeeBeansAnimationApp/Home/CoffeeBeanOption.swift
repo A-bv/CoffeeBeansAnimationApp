@@ -20,7 +20,7 @@ struct CoffeeBeanOption: View {
                     Text(name)
                         .font(.headline)
                         .foregroundColor(Color(UIColor.systemGray6))
-                        .padding(.top, 50) // Adds space under the image
+                        .padding(.top, 50)
                     Text(description)
                         .font(.subheadline)
                         .foregroundColor(Color(UIColor.systemGray4))
@@ -30,13 +30,20 @@ struct CoffeeBeanOption: View {
                     Text("\(price, specifier: "%.0f") USD")
                         .foregroundColor(Color(UIColor.systemGray6))
                         .font(.headline)
-                        .padding(.top, 10)
+                        .padding(.top, 40)
                 }
-                .padding(.bottom, 40)
+                .padding()
                 .frame(maxWidth: .infinity)
-                .background(.ultraThinMaterial)
+                .background(
+                    ZStack {
+                        LShape(cornerRadius: 20)
+                            .fill(.ultraThinMaterial)
+                            .opacity(0.3)
+                            .shadow(radius: 5)
+                    }
+                )
                 .cornerRadius(10)
-                .shadow(radius: 5)
+                .padding(10)
             }
 
             Image(imageName)
@@ -54,12 +61,10 @@ struct CoffeeBeanOption_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             AbstractBackgroundView()
-            CoffeeBeanOption(
-                name: "Robusta beans",
-                description: "A strong, bold flavor and high caffeine content.",
-                price: 15,
-                imageName: "beansGlassNoB"
-            )
+            HStack(spacing: 0) {
+                CoffeeBeanOption(name: "Robusta beans", description: "A strong, bold flavor and high caffeine content.", price: 15, imageName: "beansGlassNoB")
+                CoffeeBeanOption(name: "Arabica beans", description: "Experience a smooth, low acidity flavor in your coffee.", price: 12, imageName: "beansGlassNoB")
+            }
         }
         .ignoresSafeArea()
     }

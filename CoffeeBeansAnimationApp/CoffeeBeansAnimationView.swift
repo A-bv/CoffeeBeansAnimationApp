@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct CoffeeBeansOverlayView: View {
+struct CoffeeBeansAnimationView: View {
     @Binding var isVisible: Bool
     @State private var coffeeBeans = Array(0..<500).map { _ in
         CoffeeBean(
             position: CGPoint(x: Double.random(in: 0...UIScreen.main.bounds.width),
                               y: Double.random(in: 0...UIScreen.main.bounds.height)),
-            speed: Double.random(in: 0.5...2.0), // Random speed
+            speed: Double.random(in: 0.5...2.0),
             rotation: Angle(degrees: Double.random(in: 0...360))
         )
     }
@@ -30,7 +30,7 @@ struct CoffeeBeansOverlayView: View {
                 Image("clearBean")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 60, height: 60)
                     .position(coffeeBeans[index].position)
                     .opacity(coffeeBeans[index].opacity)
                     .rotationEffect(coffeeBeans[index].rotation)
@@ -75,5 +75,5 @@ struct CoffeeBean {
 }
 
 #Preview {
-    CoffeeBeansOverlayView(isVisible: .constant(true))
+    CoffeeBeansAnimationView(isVisible: .constant(true))
 }
