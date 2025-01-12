@@ -39,7 +39,7 @@ struct CoffeeArtBackgroundView: View {
             )
             
             // First set of circles with reduced complexity
-            ForEach(0..<80) { _ in
+            ForEach(0..<20) { _ in
                 Circle()
                     .fill(self.colors.randomElement()!)
                     .frame(width: CGFloat.random(in: 40...150), height: CGFloat.random(in: 40...150))
@@ -59,7 +59,7 @@ struct CoffeeArtBackgroundView: View {
             }
             
             // Second set of smaller circles with similar optimization
-            ForEach(0..<30) { _ in
+            ForEach(0..<10) { _ in
                 Circle()
                     .fill(self.colors.randomElement()!)
                     .frame(width: CGFloat.random(in: 20...50), height: CGFloat.random(in: 20...50))
