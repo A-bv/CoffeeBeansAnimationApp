@@ -25,6 +25,7 @@ struct CoffeeArtBackgroundView: View {
     
     var body: some View {
         ZStack {
+            // Background gradient with smooth animation
             LinearGradient(
                 gradient: Gradient(colors: colors),
                 startPoint: gradientStartPoint,
@@ -37,6 +38,7 @@ struct CoffeeArtBackgroundView: View {
                 value: gradientStartPoint
             )
             
+            // First set of circles with reduced complexity
             ForEach(0..<80) { _ in
                 Circle()
                     .fill(self.colors.randomElement()!)
@@ -48,13 +50,6 @@ struct CoffeeArtBackgroundView: View {
                     .opacity(Double.random(in: 0.05...0.25))
                     .scaleEffect(CGFloat.random(in: 0.5...2.0), anchor: .center)
                     .blur(radius: CGFloat.random(in: 20...60))
-                    .rotationEffect(.degrees(Double.random(in: 0...360)))
-                    .rotation3DEffect(
-                        .degrees(Double.random(in: -30...30)),
-                        axis: (x: 1, y: 1, z: 0)
-                    )
-                    .scaleEffect(CGFloat.random(in: 0.8...2.0), anchor: .center)
-                    .opacity(Double.random(in: 0.05...0.4))
                     .animation(
                         Animation.easeInOut(duration: Double.random(in: 4.0...8.0))
                             .repeatForever(autoreverses: true)
@@ -63,6 +58,7 @@ struct CoffeeArtBackgroundView: View {
                     )
             }
             
+            // Second set of smaller circles with similar optimization
             ForEach(0..<30) { _ in
                 Circle()
                     .fill(self.colors.randomElement()!)
@@ -74,11 +70,6 @@ struct CoffeeArtBackgroundView: View {
                     .opacity(Double.random(in: 0.15...0.4))
                     .scaleEffect(CGFloat.random(in: 0.5...1.5), anchor: .center)
                     .blur(radius: CGFloat.random(in: 5...20))
-                    .rotationEffect(.degrees(Double.random(in: 0...360)))
-                    .rotation3DEffect(
-                        .degrees(Double.random(in: -20...20)),
-                        axis: (x: 0, y: 1, z: 0)
-                    )
                     .animation(
                         Animation.easeInOut(duration: Double.random(in: 6.0...12.0))
                             .repeatForever(autoreverses: true)
