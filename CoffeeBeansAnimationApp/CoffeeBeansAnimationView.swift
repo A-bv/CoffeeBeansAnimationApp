@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CoffeeBeansAnimationView: View {
     @Binding var isVisible: Bool
-    @State private var coffeeBeans = Array(0..<500).map { _ in
+    @State private var coffeeBeans = Array(0..<50).map { _ in
         CoffeeBean(
             position: CGPoint(x: Double.random(in: 0...UIScreen.main.bounds.width),
                               y: Double.random(in: 0...UIScreen.main.bounds.height)),

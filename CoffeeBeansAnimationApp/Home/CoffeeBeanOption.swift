@@ -33,13 +33,23 @@ struct CoffeeBeanOption: View {
                         .padding(.top, 40)
                 }
                 .padding()
-                .frame(width: 170) // Set a fixed width
+                .frame(width: 170)
                 .background(
-                    ZStack {
+                    ZStack(alignment: .bottomTrailing) {
                         LShape(cornerRadius: 20)
                             .fill(.ultraThinMaterial)
                             .opacity(0.3)
                             .shadow(radius: 5)
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "arrow.right.circle.fill")
+                                .foregroundColor(Color("Chocolat"))
+                                .font(.system(size: 50))
+                                .frame(width: 55, height: 55)
+                                .clipShape(Circle())
+                        }
                     }
                 )
                 .cornerRadius(10)
