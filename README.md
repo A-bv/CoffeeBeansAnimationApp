@@ -10,6 +10,7 @@ coffee theme. The app opens on a gallery; each entry pushes a full-screen demo.
 | **Coffee Shop** | Animated storefront: pulsing gradient backdrop with glass (`.ultraThinMaterial`) product cards over a custom `LShape`. |
 | **Floating Beans** | 50 beans drifting across the screen. Tap to scatter them off-screen with a fade, then a fresh batch spawns in. |
 | **Coffee Art Background** | A looping linear-gradient drift with blurred, gently pulsing coffee-toned circles. |
+| **Rising Steam** | Wisps of steam rise from a cup, swaying and fading out as they climb. |
 | **Reveal Cup** | Button-triggered scale transition revealing a coffee cup. |
 | **Doughnut Card** | A simple product-card layout. |
 

@@ -14,6 +14,7 @@ enum AnimationDemo: String, CaseIterable, Identifiable {
     case coffeeShop = "Coffee Shop"
     case floatingBeans = "Floating Beans"
     case coffeeArt = "Coffee Art Background"
+    case risingSteam = "Rising Steam"
     case revealCup = "Reveal Cup"
     case doughnutCard = "Doughnut Card"
 
@@ -24,6 +25,7 @@ enum AnimationDemo: String, CaseIterable, Identifiable {
         case .coffeeShop:      return "Animated storefront with glass cards"
         case .floatingBeans:   return "Tap to scatter 50 drifting beans"
         case .coffeeArt:       return "Pulsing blurred gradient backdrop"
+        case .risingSteam:     return "Steam wisps rising from a cup"
         case .revealCup:       return "Button-triggered scale transition"
         case .doughnutCard:    return "Product card layout"
         }
@@ -34,6 +36,7 @@ enum AnimationDemo: String, CaseIterable, Identifiable {
         case .coffeeShop:      return "storefront.fill"
         case .floatingBeans:   return "sparkles"
         case .coffeeArt:       return "circle.hexagongrid.fill"
+        case .risingSteam:     return "smoke.fill"
         case .revealCup:       return "cup.and.saucer.fill"
         case .doughnutCard:    return "circle.dashed"
         }
@@ -51,6 +54,8 @@ enum AnimationDemo: String, CaseIterable, Identifiable {
             }
         case .coffeeArt:
             CoffeeArtBackgroundView()
+        case .risingSteam:
+            CoffeeSteamView()
         case .revealCup:
             CoffeeHomeView()
         case .doughnutCard:
