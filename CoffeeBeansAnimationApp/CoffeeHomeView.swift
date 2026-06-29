@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CoffeeHomeView.swift
 //  CoffeeBeansAnimationApp
 //
 //  Created by Alexandre Bevilacqua on 11.01.2025.
@@ -7,21 +7,18 @@
 
 import SwiftUI
 
+/// Simple showcase: a button that reveals a coffee cup with a scale transition.
 struct CoffeeHomeView: View {
-    @Binding var isVisible: Bool
     @State private var showCoffee = false
 
     var body: some View {
         VStack {
-            Button(action: {
+            Button {
                 withAnimation {
                     showCoffee.toggle()
                 }
-                if showCoffee {
-                    showBeans()
-                }
-            }) {
-                Text("Show Coffee")
+            } label: {
+                Text(showCoffee ? "Hide Coffee" : "Show Coffee")
                     .font(.headline)
                     .padding()
                     .foregroundColor(.white)
@@ -41,15 +38,8 @@ struct CoffeeHomeView: View {
         }
         .padding()
     }
-    
-    private func showBeans() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            isVisible = true
-            showCoffee = false
-        }
-    }
 }
 
 #Preview {
-    CoffeeHomeView(isVisible: .constant(false))
+    CoffeeHomeView()
 }

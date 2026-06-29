@@ -1,5 +1,5 @@
 //
-//  CoffeeBeansOverlay.swift
+//  CoffeeBeansAnimationView.swift
 //  CoffeeBeansAnimationApp
 //
 //  Created by Alexandre Bevilacqua on 11.01.2025.
@@ -7,67 +7,65 @@
 
 import SwiftUI
 
+/// Self-contained showcase: 50 coffee beans drift across the screen. Tapping
+/// scatters them off-screen with a fade, then a fresh batch spawns in.
 struct CoffeeBeansAnimationView: View {
-    @Binding var isVisible: Bool
-    @State private var coffeeBeans = Array(0..<50).map { _ in
-        CoffeeBean(
-            position: CGPoint(x: Double.random(in: 0...UIScreen.main.bounds.width),
-                              y: Double.random(in: 0...UIScreen.main.bounds.height)),
-            speed: Double.random(in: 0.5...2.0),
-            rotation: Angle(degrees: Double.random(in: 0...360))
-        )
-    }
+    @State private var beans: [CoffeeBean] = CoffeeBeansAnimationView.makeBeans()
 
-    @State private var tapLocation: CGPoint = .zero
+    private static func makeBeans() -> [CoffeeBean] {
+        (0..<50).map { _ in
+            CoffeeBean(
+                // Positions are stored as fractions (0...1) of the container so
+                // the layout is resolution-independent and works on any device.
+                position: CGPoint(x: .random(in: 0...1), y: .random(in: 0...1)),
+                speed: .random(in: 0.5...2.0),
+                rotation: .degrees(.random(in: 0...360))
+            )
+        }
+    }
 
     var body: some View {
-        ZStack {
-            Color.clear
-                .ignoresSafeArea()
-                .contentShape(Rectangle())
+        GeometryReader { geo in
+            ZStack {
+                Color.clear
+                    .contentShape(Rectangle())
 
-            ForEach(coffeeBeans.indices, id: \.self) { index in
-                Image("clearBean")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 60, height: 60)
-                    .position(coffeeBeans[index].position)
-                    .opacity(coffeeBeans[index].opacity)
-                    .rotationEffect(coffeeBeans[index].rotation)
-                    .animation(
-                        .easeInOut(duration: coffeeBeans[index].speed),
-                        value: coffeeBeans[index].position
-                    )
+                ForEach(beans) { bean in
+                    Image("clearBean")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                        .position(
+                            x: bean.position.x * geo.size.width,
+                            y: bean.position.y * geo.size.height
+                        )
+                        .opacity(bean.opacity)
+                        .rotationEffect(bean.rotation)
+                        .animation(.easeInOut(duration: bean.speed), value: bean.position)
+                        .animation(.easeInOut(duration: bean.speed), value: bean.opacity)
+                }
             }
+            .onTapGesture { scatter() }
         }
-        .onTapGesture { location in
-            tapLocation = location
-            withAnimation {
-                moveBeansOffScreen()
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                isVisible = false
-            }
-        }
+        .ignoresSafeArea()
     }
 
-    private func moveBeansOffScreen() {
-        for index in coffeeBeans.indices {
-            let randomYOffset = CGFloat.random(in: -200...200)
-            let randomXOffset = CGFloat.random(in: -200...200)
-
-            coffeeBeans[index].position.y += randomYOffset
-            coffeeBeans[index].position.x += randomXOffset
-
-            coffeeBeans[index].opacity = 0
-
-            coffeeBeans[index].position.x = min(max(coffeeBeans[index].position.x, 0), UIScreen.main.bounds.width)
-            coffeeBeans[index].position.y = min(max(coffeeBeans[index].position.y, 0), UIScreen.main.bounds.height)
+    /// Push every bean outward (intentionally past the edges) and fade it out,
+    /// then respawn a new batch once the scatter animation has played.
+    private func scatter() {
+        for index in beans.indices {
+            beans[index].position.x += .random(in: -0.6...0.6)
+            beans[index].position.y += .random(in: -0.6...0.6)
+            beans[index].opacity = 0
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            beans = Self.makeBeans()
         }
     }
 }
 
-struct CoffeeBean {
+struct CoffeeBean: Identifiable {
+    let id = UUID()
     var position: CGPoint
     var speed: Double
     var opacity: Double = 1.0
@@ -75,5 +73,8 @@ struct CoffeeBean {
 }
 
 #Preview {
-    CoffeeBeansAnimationView(isVisible: .constant(true))
+    ZStack {
+        CoffeeArtBackgroundView()
+        CoffeeBeansAnimationView()
+    }
 }

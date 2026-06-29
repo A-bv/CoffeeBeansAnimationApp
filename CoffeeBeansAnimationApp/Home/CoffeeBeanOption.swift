@@ -24,7 +24,6 @@ struct CoffeeBeanOption: View {
                     Text(description)
                         .font(.subheadline)
                         .foregroundColor(Color(UIColor.systemGray4))
-                        .foregroundColor(.gray)
                         .padding(.top, 5)
                     
                     Text("\(price, specifier: "%.0f") USD")
