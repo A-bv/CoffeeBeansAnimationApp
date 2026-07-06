@@ -1,7 +1,10 @@
 # Coffee Animations
 
-A SwiftUI portfolio of small, self-contained animation showcases built around a
-coffee theme. The app opens on a gallery; each entry pushes a full-screen demo.
+A SwiftUI portfolio of small, self-contained animation showcases built around a coffee theme. The app opens on a gallery; each entry pushes a full-screen demo.
+
+![Swift 5](https://img.shields.io/badge/Swift-5-F05138?logo=swift&logoColor=white)
+![iOS 18.1+](https://img.shields.io/badge/iOS-18.1%2B-007AFF?logo=apple&logoColor=white)
+![SwiftUI](https://img.shields.io/badge/UI-SwiftUI-8E44AD)
 
 ## Showcases
 
@@ -16,16 +19,18 @@ coffee theme. The app opens on a gallery; each entry pushes a full-screen demo.
 
 ## Requirements
 
-- Xcode 16+
-- iOS 18.1+ deployment target
-- Swift 5.0
+- Xcode 16 or later
+- iOS 18.1+ deployment target (builds in the Swift 5 language mode)
 
-## Running
+## Build & run
 
-Open `CoffeeBeansAnimationApp.xcodeproj` in Xcode, pick an iOS Simulator (e.g.
-iPhone 17 Pro), and run (`⌘R`).
+```bash
+git clone https://github.com/A-bv/CoffeeBeansAnimationApp.git
+cd CoffeeBeansAnimationApp
+open CoffeeBeansAnimationApp.xcodeproj
+```
 
-From the command line:
+Pick an iOS simulator (e.g. iPhone 17 Pro) and press **⌘R** to run. From the command line:
 
 ```sh
 xcodebuild \
@@ -35,7 +40,7 @@ xcodebuild \
   build
 ```
 
-## Project structure
+## Layout
 
 ```
 CoffeeBeansAnimationApp/
@@ -61,8 +66,7 @@ The gallery is driven by the `AnimationDemo` enum, so adding a showcase is two s
 1. Add a `case` to `AnimationDemo` (and a `subtitle` + SF Symbol `symbol`).
 2. Return your view from the `destination` switch.
 
-`AnimationGalleryView` renders every case automatically via `CaseIterable` — no
-list editing required.
+`AnimationGalleryView` renders every case automatically via `CaseIterable` — no list editing required.
 
 ## Conventions
 
